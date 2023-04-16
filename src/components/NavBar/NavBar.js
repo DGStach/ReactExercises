@@ -1,7 +1,7 @@
 import React from "react";
 import './NavBar.css'
 
-const NavBar = () => {
+const NavBar = ({onRouteChange}) => {
     return (
         <div>
             <section className="top-nav">
@@ -15,7 +15,7 @@ const NavBar = () => {
                 <ul className="menu">
                     <li>Galeria</li>
                     <li>O Mnie</li>
-                    <li>Kontakt</li>
+                    <li onClick={()=>onRouteChange('Gallery')}>Kontakt</li>
                 </ul>
             </section>
         </div>
