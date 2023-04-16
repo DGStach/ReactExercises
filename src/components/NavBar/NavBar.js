@@ -13,9 +13,9 @@ const NavBar = ({onRouteChange}) => {
                     <div className='menu-button'></div>
                 </label>
                 <ul className="menu">
-                    <li>Galeria</li>
+                    <li onClick={()=>onRouteChange('Gallery')}>Galeria</li>
                     <li>O Mnie</li>
-                    <li onClick={()=>onRouteChange('Gallery')}>Kontakt</li>
+                    <li>Kontakt</li>
                 </ul>
             </section>
         </div>

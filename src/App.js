@@ -32,7 +32,6 @@ render(){
                 </div>
                 :<NavBar onRouteChange={this.onRouteChange}/>
             }
-            }
             <Gallery/>
         </div>
     );
