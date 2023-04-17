@@ -33,6 +33,7 @@ img:hover {
     margin: 0px;
     background: #0e0e0e;
     height: 100%;
+    display: none;
 }
 #fullImg {
     aspect-ratio: auto 600 / 400;
