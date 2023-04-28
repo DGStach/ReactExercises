@@ -30,10 +30,15 @@ class Gallery extends Component {
 
     onPictureViewerDisplay = (res) => {
         console.log(res)
-        if (res === 'true'){
+        if (res === 'flex'){
          this.setState({PictureViewerDisplay:"flex"},
              ()=>{console.log(this.state.PictureViewerDisplay)
          });
+        }
+        if (res === 'none'){
+            this.setState({PictureViewerDisplay:"none"},
+                ()=>{console.log(this.state.PictureViewerDisplay)
+                });
         }
         }
 
@@ -45,11 +50,14 @@ class Gallery extends Component {
                     <img
                         className="mySlides"
                         src={a} alt='Logo'
-                        onClick={(event)=>{this.onPictureViewerDisplay('true'); this.onImgLocalization(event)}}
+                        onClick={(event)=>{
+                            this.onPictureViewerDisplay('flex');
+                            this.onImgLocalization(event)}}
                     />
                 </div>
                 <PictureViewer
                     ImgLocalization = {ImgLocalization}
+                    onPictureViewerDisplay = {this.onPictureViewerDisplay}
                     PictureViewerDisplay = {PictureViewerDisplay}
                 />
             </div>

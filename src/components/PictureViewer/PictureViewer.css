@@ -1,4 +1,7 @@
 #PictureViewerBox {
     display: none;
 }
+#PictureViewerBox span{
+    color: #000000;
+}
 
