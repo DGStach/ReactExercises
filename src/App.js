@@ -27,12 +27,11 @@ render(){
         <div className="App">
             {route === 'Gallery'
                 ? <div>
-                    <Gallery/>
                     <NavBar onRouteChange={this.onRouteChange}/>
+                    <Gallery/>
                 </div>
                 :<NavBar onRouteChange={this.onRouteChange}/>
             }
-            <Gallery/>
         </div>
     );
 }
