@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from "./components/NavBar/NavBar"
 import Gallery from "./components/Gallery/Gallery";
 
+
 class App extends Component {
 
     constructor() {
@@ -11,6 +12,7 @@ class App extends Component {
             route: "home"
         }
     }
+
 
     onRouteChange = (route) => {
         if (route === 'Gallery'){
@@ -30,7 +32,7 @@ render(){
                     <NavBar onRouteChange={this.onRouteChange}/>
                     <Gallery/>
                 </div>
-                :<NavBar onRouteChange={this.onRouteChange}/>
+                : <NavBar onRouteChange={this.onRouteChange}/>
             }
         </div>
     );
