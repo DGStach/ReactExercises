@@ -57,6 +57,11 @@ class Gallery extends Component {
                         }}
                     />
                 </div>
+                <div>
+                    {SliderData.map((picture, index) =>{
+                        return(<img src={picture.image} alt=''/>)})
+                        }
+                </div>
                 <PictureViewer
                     ImgLocalization = {ImgLocalization}
                     onPictureViewerDisplay = {this.onPictureViewerDisplay}
