@@ -3,8 +3,8 @@ import './PictureViewer.css'
 
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
 
-let PictureViewer = ({ImgLocalization, PictureViewerDisplay, onPictureViewerDisplay, slides}) => {
-    const [current, setCurrent] = useState(0);
+let PictureViewer = ({changeRoute ,slides, src, imgIndex}) => {
+    const [current, setCurrent] = useState(imgIndex);
     const length = slides.length;
 
     const nextSlide = () => {
@@ -20,45 +20,24 @@ let PictureViewer = ({ImgLocalization, PictureViewerDisplay, onPictureViewerDisp
     }
 
     return (
-        <div>
-            <div>
-                <div className='slider'>
-                    <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide}/>
-                    <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide}/>
-                    {slides.map((slide, index) => {
-                        return (
-                            <div
-                                className={index === current ? 'slide active' : 'slide'}
-                                key={index}
-                            >
-                                {index === current && (
-                                    <img
-                                        src={slide.image} alt='' className='image'
-                                    ></img>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-
-            </div>
-
-            {/*                <div id='PictureViewerBox' style={{display: PictureViewerDisplay}}>
-
-                    <img
-                        id="PictureViewerBOX"
-                        src={ImgLocalization}
-                        alt='Logo'
-                    />
-                    <span onClick={() => {
-                        onPictureViewerDisplay("none")
-                    }}>X</span>
-
-           <button onClick={}>Next</button>
-
-
-                </div>*/}
-
+        <div className='slider'>
+            <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide}/>
+            <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide}/>
+            {slides.map((slide, index) => {
+                return (
+                        <div
+                            className={index === current ? 'slide active' : 'slide'}
+                            key={index}
+                        >
+                            {index === current && (
+                                <img
+                                    src={slide.image} alt='' className='image'
+                                ></img>
+                            )}
+                            <span onClick={() => changeRoute('sliderOff')}>X</span>
+                        </div>
+                );
+            })}
         </div>
     )
 }

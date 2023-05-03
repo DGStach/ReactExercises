@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import PictureViewer from "../PictureViewer/PictureViewer";
-import { SliderData } from '../../assets/SliderData';
+import {SliderData} from '../../assets/SliderData';
 import "./Gallery.css"
+/*
 import a from '../../assets/Gallery/1.jpg'
-/*import b from '../../assets/Gallery/2.jpg'
+import b from '../../assets/Gallery/2.jpg'
 import c from '../../assets/Gallery/3.jpg'
 import d from '../../assets/Gallery/4.jpg'
 import e from '../../assets/Gallery/5.jpg'
@@ -18,56 +19,52 @@ class Gallery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ImgLocalization: "",
-            PictureViewerDisplay:"",
+            imgIndex: 0,
+            route: 'sliderOff'
         }
     }
 
-    onImgLocalization = (event) => {
-        this.setState({ImgLocalization: event.target.getAttribute('src')},
-            () => {console.log(this.state.ImgLocalization)
-        });
-    }
+    changeRoute = (route) => {
+    this.setState({route: route})
+        setTimeout(()=>{console.log(this.state.route)},0)
+        }
 
-    onPictureViewerDisplay = (res) => {
-        console.log(res)
-        if (res === 'flex'){
-         this.setState({PictureViewerDisplay:"flex"},
-             ()=>{console.log(this.state.PictureViewerDisplay)
-         });
-        }
-        if (res === 'none'){
-            this.setState({PictureViewerDisplay:"none"},
-                ()=>{console.log(this.state.PictureViewerDisplay)
-                });
-        }
-        }
+    getIndex = (event) => {
+        let src = event.target.src;
+        SliderData.forEach((item, index) => {
+            if (item.image === src) {
+                this.setState({imgIndex: index})
+                setTimeout(() => {
+                    console.log(this.state.imgIndex, index)
+                }, 0);
+            }
+        })
+
+    }
 
     render() {
-        const {ImgLocalization, PictureViewerDisplay} = this.state;
+        const {imgIndex, route} = this.state;
         return (
             <div>
-                <div id="gallery" className="container">
-                    <img
-                        className="mySlides"
-                        src={a} alt='Logo'
-                        onClick={(event) => {
-                            this.onPictureViewerDisplay('flex');
-                            this.onImgLocalization(event)
-                        }}
-                    />
-                </div>
-                <div>
-                    {SliderData.map((picture, index) =>{
-                        return(<img src={picture.image} alt=''/>)})
+                {route === "sliderOff"
+                    ? <div>
+                        {SliderData.map((picture, index) => {
+                            return (
+                                <img
+                                    src={picture.image} alt=''
+                                    onClick={this.getIndex}
+                                    onClick={()=>this.changeRoute('sliderOn')}
+                                    key={index}
+                                />)
+                        })
                         }
-                </div>
-                <PictureViewer
-                    ImgLocalization = {ImgLocalization}
-                    onPictureViewerDisplay = {this.onPictureViewerDisplay}
-                    PictureViewerDisplay = {PictureViewerDisplay}
-                    slides={SliderData}
-                />
+                    </div>
+                    : <PictureViewer
+                        changeRoute={this.changeRoute}
+                        slides={SliderData}
+                        imgIndex={imgIndex}
+                    />
+                }
             </div>
         )
     }
